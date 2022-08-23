@@ -10,13 +10,15 @@ function preenchaConteudo(tipo=null)
 
     div = String;
 
+    c = 0;
+
     if(tipo)
     {
         $.each(array_produto, function( i, v ) 
         { 
             if(v.ID_TIPO==tipo)
             {
-                if(i==0)
+                if(c==0)
                 {
                     div = conteudoHtml(v.ID, v.DESC_TIPO, v.DESC, v.VALOR, v.QUANTIDADE);
                     temProduto = true;
@@ -25,14 +27,15 @@ function preenchaConteudo(tipo=null)
                 {
                     div = div + conteudoHtml(v.ID, v.DESC_TIPO, v.DESC, v.VALOR, v.QUANTIDADE);
                 }  
-            }     
+            c++;    
+            } 
         });
     }
     else
     {
         $.each(array_produto, function( i, v ) 
         { 
-            if(i==0)
+            if(c==0)
             {
                 div = conteudoHtml(v.ID, v.DESC_TIPO, v.DESC, v.VALOR, v.QUANTIDADE);
                 temProduto = true;
@@ -40,7 +43,8 @@ function preenchaConteudo(tipo=null)
             else
             {
                 div = div + conteudoHtml(v.ID, v.DESC_TIPO, v.DESC, v.VALOR, v.QUANTIDADE);
-            }   
+            }  
+            c++; 
         });
     }
 
